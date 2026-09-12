@@ -1,0 +1,15 @@
+
+cpu_status = ps.cpu_percent(interval=1) #Retorna a porcentagem de utilização da CPU. Com interval calcula a média do periodo (1s)
+ram_status = ps.virtual_memory() #retorna: total, avaible, used, free, percent.
+disk_status = ps.disk_usage('/') #retorna total, used, free, percent.
+disk_partitions = ps.disk_partitions() #retorna device, mountpoint, fstype
+rede_status = ps.net_io_counters(pernic=False) # retorna bytes_sent/recv, packets_sent/recv. Com pernic=True detalha por placa de rede.
+
+for p in ps.process_iter(attrs=None):
+    try:
+        # Access attributes via methods
+        print(p.pid, p.name())
+    except ps.NoSuchProcess:
+        pass
+
+input("Pressione Enter para sair...")
